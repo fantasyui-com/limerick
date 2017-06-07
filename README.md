@@ -1,11 +1,11 @@
 # limerick
 Limerick is a Poem Generator driven by a standard OOP description language.
 The language is inspired by text adventure games. A virtual being is sent
-down the word of your own imagination making observations and interacting
-with objects you defined within.
+down the world of your own imagination making observations and interacting
+with objects you define within.
 
 The following is a snippet out of a poem about a little universe filled
-with light and love, and land and forrest. Resulting Poems follow bellow.
+with light and love, and land; and forrest. Resulting Poems follow bellow.
 
 ```JavaScript
 
