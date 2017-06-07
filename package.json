@@ -1,6 +1,6 @@
 {
   "name": "limerick",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "World Poetry Project",
   "main": "index.js",
   "scripts": {
