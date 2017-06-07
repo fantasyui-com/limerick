@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/fantasyui-com/limerick/issues"
   },
-  "homepage": "https://github.com/fantasyui-com/limerick#readme"
+  "homepage": "https://github.com/fantasyui-com/limerick#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "oneof": "^1.0.1",
+    "shelljs": "^0.7.8"
+  }
 }
