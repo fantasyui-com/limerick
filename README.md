@@ -67,9 +67,9 @@ const language = {
 
 #### Bird Enters Universe
 
-  Bird has left infinite universe and entered infinite peace
+    Bird has left infinite universe and entered infinite peace
 
-  Journey ends with infinite peace slowly fading away.
+    Journey ends with infinite peace slowly fading away.
 
 #### Lunk Enters Gym
 
