@@ -1,4 +1,4 @@
-const { Actor, Room, Item, Location } = require('./library.js');
+const { Actor, Room, Item, Location } = require(__dirname+'/index.js');
 
 
 const language = {

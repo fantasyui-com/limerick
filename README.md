@@ -65,8 +65,13 @@ const language = {
 
 ### Version 2
 
+#### Bird Enters Universe
+
+  Bird has left infinite universe and entered infinite peace
+
+  Journey ends with infinite peace slowly fading away.
+
 #### Lunk Enters Gym
-by lunk.js
 
     Lunk finds Pull Up Bar
     Leaving gym and entering restroom
@@ -75,7 +80,6 @@ by lunk.js
     Journey ends in restroom
 
 #### Robot Enters Universe
-by happy.robot.js
 
     Robot finds nothing
     Leaving infinite universe and entering infinite universe
