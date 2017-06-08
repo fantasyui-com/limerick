@@ -65,6 +65,15 @@ const language = {
 
 ### Version 2
 
+#### Lunk Enters Gym
+by lunk.js
+
+    Lunk finds Pull Up Bar
+    Leaving gym and entering restroom
+
+    Lunk finds toilet
+    Journey ends in restroom
+
 #### Robot Enters Universe
 by happy.robot.js
 

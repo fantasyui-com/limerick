@@ -27,20 +27,16 @@ const lunk = new Actor(
   {language},
 );
 
-const gym = new Room( ['gym'], ['house of pain'] );
-const frontDesk = new Room( ['front desk'], ['busy front desk'] );
-const staff = new Item( ['front desk staff'], ['busy staff'] );
+const gym = new Room( ['gym'], ['gym'] );
+const restroom = new Room( ['restroom'], ['restroom'] );
+const toilet = new Item( ['toilet'], ['toilet'] );
 
-const restroom = new Room( ['restroom'], ['stuffy restroom'] );
-const battery = new Room( ['battery'], ['powerful battery'] );
-const nothing = new Room( ['nothing'], ['nothing'] );
-
-gym.contains(frontDesk);
-frontDesk.has(staff);
+gym.contains(restroom);
+restroom.has(toilet);
 
 ['Squat Station', 'Barbells', 'Bench Press', 'Incline Bench Press', 'Hammer Strength machine', 'Cables and Pulleys', 'Dumb Bells', 'Pull Up Bar', 'Lat Pull Down Machine', 'Leg Extension Machine', 'Leg Curl Machine', 'Hyper Extension Bench', 'Dipping Bars', 'Smith Machine', 'Rowing Machine', 'Glute Ham Developer', 'Preacher Bench', 'Abdominal Bench', 'Leg Press machine', 'Hack Squat Machine', 'Calf Machines', 'Leg Adduction / Abduction Machine', 'Pec Deck Machine', 'Kettle Bells',]
-.forEach(i=>gym.contains( new Room( [i], [i] ) )
+.forEach(i=>gym.has( new Room( [i], [i] ) ) )
 
 lunk.enterInto(gym);
 
-while(actor.move()){}
+while(lunk.move()){}
