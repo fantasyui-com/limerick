@@ -1,182 +1,72 @@
-let measure = 4;
-let measured = 0;
-
-const oneof = require('oneof');
-const EventEmitter = require('events');
-class Time extends EventEmitter {}
-const time = new Time();
-const existence = setInterval(()=>{
-  time.emit('tick');
-
-  measured++;
-
-  if(measured === measure){
-    console.log("");
-    measured=0;
-  }
-
-},1)
-
-class Item {
-  constructor(names, descriptions) {
-    this.names = names;
-    this.descriptions = descriptions;
-  }
-  name(){
-    return oneof(this.names);
-  }
-  description(){
-    return oneof(this.descriptions);
-  }
-}
-
-class Location {
-
-  constructor(names,descriptions) {
-    this.names = names;
-    this.descriptions = descriptions;
-    this.locations = [];
-    this.items = [];
-  }
-
-  name(){
-    return oneof(this.names);
-  }
-
-  description(){
-    return oneof(this.descriptions);
-  }
-
-  contains(location) {
-    this.locations.push(location);
-  }
-
-  has(item) {
-    this.items.push(item);
-  }
-
-}
-
-class Being {
-
-  constructor(name) {
-    this.name = name;
-
-    this.titles = [
-      '%s into the fabric of %s',
-      '%s in %s',
-      '%s lost to %s',
-    ]
-
-    this.items = [
-      'Thnking of %s helps us understand',
-      'Understanding %s finds us wanting',
-      'Within the year %s helps us see',
-      'Overnight %s fills us with light',
-    ]
-
-    this.motions = [
-      'Leaving %s we step into %s',
-      'Flying out of %s we glide together into %s',
-      'Escaping %s we slide into %s',
-      'Falling asleep in %s we come to awaken inside %s',
-    ];
-
-    this.ends = [
-      'And we rest quietly in %s',
-      'And we are reborn in %s',
-      'And we find adventure in %s',
-      'And none have come to visit %s',
-    ];
-
-  }
-
-  goto(location){
-    console.log(oneof(this.motions), this.location.description() , location.description());
-      this.location = location;
-
-  }
-  description(){
-    console.log(this.location.description());
-  }
-  end(){
-    console.log(oneof(this.ends), this.location.description());
-    clearInterval(existence);
-  }
+const { Actor, Room, Item, Location } = require('./library.js');
 
 
+const language = {
 
-  wander(){
-    let newLocation = oneof( this.location.locations );
-    if(newLocation){
-      this.goto( newLocation );
-    }else{
-      this.end();
-    }
-  }
+  poemTitles: [
+    /* note the elongated structure of title [actor(s) [motion] ... of [location]] */
+    '{{actor_name}} falling into the fabric of {{location_name}}',
+    '{{actor_name}} falling into the depths of {{location_name}}',
+    '{{actor_name}} hidden within the h eights of {{location_name}}',
+  ],
 
-  look(){
-    let itemToInspect = oneof( this.location.items );
-    if(itemToInspect) {
+  closingLines: [
+    'And we rest quietly in {{location_name}}',
+    'And we are reborn within {{location_name}}',
+    'And we find adventure in {{location_name}}',
+    'And none will come to visit {{location_name}} again.',
+  ],
 
-    console.log( oneof(this.items), itemToInspect.description() );
-    }
+  itemInteractions: [
+    'Thinking of {{item_name}} helps us understand',
+    'Understanding {{item_name}} finds us wanting',
+    'Within the year {{item_name}} helps us see',
+    'Overnight {{item_name}} fills us with light',
+  ],
 
-  }
+  locationTransitions: [
+    'Leaving {{location_name}} we step into {{destination_name}}',
+    'We fly out of {{location_name}} together',
+    'We glide together into {{destination_name}}',
+    'Escaping {{location_name}} we slide into {{destination_name}}',
+    'Falling asleep in {{location_name}} we come to awaken inside {{destination_name}}',
+  ],
 
+};
 
-
-  enterInto( location ) {
-
-    this.location = location;
-
-    console.log(oneof(this.titles) + '\n', this.name , this.location.name());
-
-    time.on('tick', () => {
-      this.look();
-      this.wander();
-      console.log("")
-
-    });
-  }
-
-}
-
-class Room extends Location {}
-
-
-// PROGRAM //
-
-const wanderer = new Being('Wanderers');
+const wanderer = new Actor(
+  ['wanderers', 'adventurers', 'thinkers'],
+  ['beings of light', 'lovers of night'],
+  {language},
+);
 
 const universe = new Room(
-  ['Universe', 'Existence'],
+  ['universe', 'existence'],
   ['fabric of time', 'all the worlds combined']
 );
 
 const light = new Room(
-  ['Light', 'The Sun and the Moon'],
+  ['light', 'the sun and the moon'],
   [ 'a brightly lit orb', 'throbbing light', 'the light of us', ]
 );
 
 const sea = new Room(
-  ['Infinity', 'Sea'],
+  ['infinity', 'sea'],
   [ 'infinity of eden', 'endless horizon', 'infinite starscape', 'final frontier' ]
 );
 
 const love = new Item(
-  ['Love', 'Heart and Soul'],
+  ['love', 'heart and soul'],
   [ 'the music of the spheres', 'the wanting of forever', 'the dream of a dynasty' ]
 );
 
-
 const land = new Room(
-  ['Island', 'Lost City'],
+  ['island', 'lost city'],
   [ 'place of complexity', 'the base plateau', 'familiar places', 'the streets at night' ]
 );
 
 const forest = new Room(
-  ['Familiar', 'Grand'],
+  ['familiar', 'grand'],
   [ 'a place of learning', 'source of understanding', 'tree of knowledge', 'castle of trees' ]
 );
 
@@ -190,3 +80,5 @@ land.has(love);
 forest.has(light);
 forest.has(love);
 wanderer.enterInto(universe);
+
+while(wanderer.move()){}
