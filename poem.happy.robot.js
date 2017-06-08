@@ -22,14 +22,20 @@ const language = {
 };
 
 const actor = new Actor(
-  ['robot'],
-  ['happy robot'],
+  ['Robot'],
+  ['Happy Robot'],
   {language},
 );
 
 const universe = new Room( ['universe'], ['infinite universe'] );
+const lobby = new Room( ['lobby'], ['quiet lobby'] );
+const battery = new Room( ['battery'], ['powerful battery'] );
+const nothing = new Room( ['nothing'], ['nothing'] );
 
-
+universe.has(nothing);
+universe.contains(universe);
+universe.contains(lobby);
+lobby.has(battery);
 
 actor.enterInto(universe);
 

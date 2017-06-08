@@ -77,6 +77,7 @@ class Actor {
   goto(location){
 
     let locationTransition = oneof(this.locationTransitions)({
+      actor_name: this.name(),
       location_name: this.location.description(),
       destination_name: location.description(),
     });
@@ -89,7 +90,10 @@ class Actor {
   }
 
   end(){
-    console.log(oneof(this.closingLines)({location_name: this.location.description()}));
+    console.log(oneof(this.closingLines)({
+      actor_name: this.name(),
+      location_name: this.location.description()
+    }));
     this.theEnd = true;
   }
 
@@ -106,7 +110,11 @@ class Actor {
     let itemToInspect = oneof( this.location.items );
     if(itemToInspect) {
 
-    console.log( oneof(this.itemInteractions)({ item_name:itemToInspect.description() }) );
+    console.log( oneof(this.itemInteractions)({
+      actor_name: this.name(),
+      item_name:itemToInspect.description(),
+      location_name: this.location.name(),
+    }) );
     }
 
   }

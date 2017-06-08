@@ -65,6 +65,34 @@ const language = {
 
 ### Version 2
 
+#### Robot Enters Universe
+by happy.robot.js
+
+    Robot finds nothing
+    Leaving infinite universe and entering infinite universe
+
+    Robot finds nothing
+    Leaving infinite universe and entering infinite universe
+
+    Robot finds nothing
+    Leaving infinite universe and entering infinite universe
+
+    Robot finds nothing
+    Leaving infinite universe and entering infinite universe
+
+    Robot finds nothing
+    Leaving infinite universe and entering quiet lobby
+
+    Robot finds powerful battery
+    Journey ends in quiet lobby
+
+#### Wanderers Falling Into The Fabric Of Universe
+
+    Within the year the music of the spheres helps us see
+    Falling asleep in all the worlds combined we come to awaken inside throbbing light
+
+    And none will come to visit a brightly lit orb again.
+
 #### Wanderers Falling Into The Depths Of Existence
 
     Thinking of the wanting of forever helps us understand
