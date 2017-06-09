@@ -183,3 +183,5 @@ const language = {
     I finds horse
     Leaving dark and deep woods and entering frozen lake
     Journey ends in frozen lake
+
+![horse.png](horse.png)
