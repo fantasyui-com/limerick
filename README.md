@@ -175,3 +175,12 @@ const language = {
     Flying out of the streets at night we glide together into source of understanding
     a brightly lit orb fills us with light
     And we are reborn in castle of trees
+
+### Beta Version (Failed Experiments)
+
+#### I Enters Woods
+
+I finds horse
+Leaving dark and deep woods and entering frozen lake
+
+Journey ends in frozen lake

@@ -37,6 +37,6 @@ restroom.has(toilet);
 ['Squat Station', 'Barbells', 'Bench Press', 'Incline Bench Press', 'Hammer Strength machine', 'Cables and Pulleys', 'Dumb Bells', 'Pull Up Bar', 'Lat Pull Down Machine', 'Leg Extension Machine', 'Leg Curl Machine', 'Hyper Extension Bench', 'Dipping Bars', 'Smith Machine', 'Rowing Machine', 'Glute Ham Developer', 'Preacher Bench', 'Abdominal Bench', 'Leg Press machine', 'Hack Squat Machine', 'Calf Machines', 'Leg Adduction / Abduction Machine', 'Pec Deck Machine', 'Kettle Bells',]
 .forEach(i=>gym.has( new Room( [i], [i] ) ) )
 
-lunk.enterInto(gym);
+lunk.enter(gym);
 
 while(lunk.move()){}

@@ -35,6 +35,6 @@ const peace = new Room( ['peace'], ['infinite peace'] );
 universe.contains(peace);
 
 
-actor.enterInto(universe);
+actor.enter(universe);
 
 while(actor.move()){}

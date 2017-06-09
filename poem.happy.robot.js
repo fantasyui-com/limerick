@@ -37,6 +37,6 @@ universe.contains(universe);
 universe.contains(lobby);
 lobby.has(battery);
 
-actor.enterInto(universe);
+actor.enter(universe);
 
 while(actor.move()){}

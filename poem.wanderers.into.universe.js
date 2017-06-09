@@ -79,6 +79,6 @@ land.contains(forest);
 land.has(love);
 forest.has(light);
 forest.has(love);
-wanderer.enterInto(universe);
+wanderer.enter(universe);
 
 while(wanderer.move()){}
