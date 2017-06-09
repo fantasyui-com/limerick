@@ -180,7 +180,6 @@ const language = {
 
 #### I Enters Woods
 
-I finds horse
-Leaving dark and deep woods and entering frozen lake
-
-Journey ends in frozen lake
+    I finds horse
+    Leaving dark and deep woods and entering frozen lake
+    Journey ends in frozen lake
