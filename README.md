@@ -63,6 +63,16 @@ const language = {
 
 ## Interesting Examples
 
+### Version 3 (Event Emitter Based)
+
+#### I enters lovely woods by A. E. Mouse
+
+Mmm, the lovely woods are lovely dark and deep
+Leaving dark and deep woods and entering frozen lake
+Brr, the frozen lake is sweet and welcoming to no end
+
+The lonely I finds silent fish
+
 ### Version 2
 
 #### Bird Enters Universe
