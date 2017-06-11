@@ -13,9 +13,30 @@ const type = {
   action: {type: 'action'},
 }
 
-class Eventing {
+class Namable {
 
-  constructor() {
+  constructor(options) {
+    this.names = options.names;
+    this.descriptions = options.descriptions;
+  }
+
+  name(){
+    if( (!this.names) || (this.names.length === 0) ) throw new Error('Names must not be empty: ' + JSON.stringify(this))
+    return oneof(this.names);
+  }
+
+  description(){
+    if( (!this.descriptions) || (this.descriptions.length === 0) ) throw new Error('Descriptions must not be empty: ' + JSON.stringify(this))
+    return oneof(this.descriptions);
+  }
+}
+
+
+class Eventing extends Namable {
+
+  constructor(options) {
+    super(options);
+
     this.templateOptions = {interpolate: /{{([\s\S]+?)}}/g };
 
     this.eventingData = {};
@@ -24,7 +45,7 @@ class Eventing {
   on(event, messages){
     if (!this.eventingData[event]) this.eventingData[event] = [];
     this.eventingData[event] = this.eventingData[event].concat(messages.map( i=>i.replace(/(\{\{[a-z]+) ([a-z]+\}\})/g, '$1_$2')).map( i=> template(i,this.templateOptions)));
-    //console.log( this.names, this.eventingData  )
+
   }
 
   emit(event, data){
@@ -39,8 +60,9 @@ class Eventing {
 
 
 class Containment extends Eventing {
-  constructor() {
-    super();
+  constructor(options) {
+    super(options);
+
     this.containmentData = [];
   }
 
@@ -66,49 +88,6 @@ class Containment extends Eventing {
 
 
 
-class Item extends Containment {
-  constructor(names, descriptions) {
-    super()
-    this.names = names;
-    this.descriptions = descriptions;
-  }
-  name(){
-    return oneof(this.names);
-  }
-  description(){
-    return oneof(this.descriptions);
-  }
-}
-
-
-
-class Action extends Containment {
-  constructor(names, descriptions) {
-    super()
-    this.names = names;
-    this.descriptions = descriptions;
-  }
-  name(){
-    return oneof(this.names);
-  }
-  description(){
-    return oneof(this.descriptions);
-  }
-}
-
-class Actor extends Containment {
-  constructor(names, descriptions) {
-    super()
-    this.names = names;
-    this.descriptions = descriptions;
-  }
-  name(){
-    return oneof(this.names);
-  }
-  description(){
-    return oneof(this.descriptions);
-  }
-}
 
 
 
@@ -117,21 +96,11 @@ class Actor extends Containment {
 
 class Location extends Containment {
 
-  constructor(names,descriptions) {
-    super()
-    this.names = names;
-    this.descriptions = descriptions;
+  constructor(options) {
+    super(options);
+
     this.locations = [];
     this.items = [];
-
-  }
-
-  name(){
-    return oneof(this.names);
-  }
-
-  description(){
-    return oneof(this.descriptions);
   }
 
   contains(location) {
@@ -142,10 +111,6 @@ class Location extends Containment {
     this.items.push(item);
   }
 
-
-
-
-
 }
 
 
@@ -155,24 +120,13 @@ class Location extends Containment {
 
 class Entity extends Containment {
 
-  constructor(names, descriptions, options) {
+  constructor(options) {
+    super(options);
 
-    super()
     this.theEnd = false;
-    this.names = names;
-    this.descriptions = descriptions;
-
   }
 
-  name(){
-    return oneof(this.names);
-  }
-
-  description(){
-    return oneof(this.descriptions);
-  }
-
-  goto(location){
+  wanderGoto(location){
 
     this.location.emit('leave', {
 
@@ -199,47 +153,53 @@ class Entity extends Containment {
 
     });
 
+
+
   }
 
   // description(){
   //   console.log(this.location.description());
   // }
 
-  end(){
+  wanderEnd(){
     this.emit('finish', {
       actor_name: this.name(),
       actor_description: this.description(),
-
       location_name: this.location.name(),
       location_description: this.location.description(),
     });
     this.theEnd = true;
   }
 
+
   wander(){
     let newLocation = oneof( this.location.things(type.container) );
     if(newLocation){
-      this.goto( newLocation );
+      this.wanderGoto( newLocation );
     }else{
-      this.end();
+      this.wanderEnd();
     }
   }
 
-  look(){
-    let itemToInspect = oneof( this.location.things( type.thing ) );
-    if(itemToInspect) {
-      itemToInspect.emit('discovery', {
 
+  look(){
+
+    let things = this.location.things( type.thing );
+
+    if(things.length > 0){
+      let itemToInspect = oneof( things );
+      let data = {
         actor_name: this.name(),
         actor_description: this.description(),
 
         item_name:itemToInspect.name(),
         item_description:itemToInspect.description(),
-
         location_name: this.location.name(),
         location_description: this.location.description(),
+      };
+      if(itemToInspect) itemToInspect.emit('discovery', data);
+      things.map(i=>i.emit('proximity', data))
 
-      });
     }
   }
 
@@ -271,11 +231,13 @@ class Entity extends Containment {
 
 }
 
-
-class Player extends Entity   {}
-class Room  extends Location {}
-class Universe  extends Location {}
-class Container  extends Location {}
+class Item extends Containment { constructor(options) { super(options) } }
+class Action extends Containment { constructor(options) { super(options) } }
+class Actor extends Containment { constructor(options) { super(options) } }
+class Player extends Entity { constructor(options) { super(options) } }
+class Room  extends Location { constructor(options) { super(options) } }
+class Universe  extends Location { constructor(options) { super(options) } }
+class Container  extends Location { constructor(options) { super(options) } }
 
 
 

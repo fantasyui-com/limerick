@@ -65,13 +65,24 @@ const language = {
 
 ### Version 3 (Event Emitter Based)
 
+#### I enter lovely woods by A. E. Mouse
+
+    Mmm, the lovely woods are lovely dark and deep
+    But the damn curious horse makes a strange sound
+    I must escape dark and deep woods in hopes of to reaching A quiet village
+    The sound of silence rings in my ears.
+
+    I greet the being that owns the woods.
+
+    the houses, the houses envelop me and take me over
+
 #### I enters lovely woods by A. E. Mouse
 
-Mmm, the lovely woods are lovely dark and deep
-Leaving dark and deep woods and entering frozen lake
-Brr, the frozen lake is sweet and welcoming to no end
+    Mmm, the lovely woods are lovely dark and deep
+    Leaving dark and deep woods and entering frozen lake
+    Brr, the frozen lake is sweet and welcoming to no end
 
-The lonely I finds silent fish
+    The lonely I finds silent fish
 
 ### Version 2
 
