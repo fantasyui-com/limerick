@@ -18,7 +18,7 @@
   "homepage": "https://github.com/fantasyui-com/limerick#readme",
   "dependencies": {
     "lodash": "^4.17.11",
-    "oneof": "^1.0.1",
+    "oneof": "^1.1.0",
     "shelljs": "^0.7.8"
   }
 }
